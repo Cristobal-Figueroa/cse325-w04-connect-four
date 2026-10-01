@@ -76,22 +76,6 @@ main {
     }
 }
 
-.footer-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: .3rem;
-    color: #999;
-    font-size: 12px;
-    opacity: .8;
-    text-decoration: none;
-}
-
-    .footer-brand:hover {
-        opacity: 1;
-        color: #999;
-        text-decoration: none;
-    }
-
 #blazor-error-ui {
     color-scheme: light only;
     background: lightyellow;

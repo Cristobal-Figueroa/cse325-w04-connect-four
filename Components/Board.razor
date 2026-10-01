@@ -11,6 +11,7 @@
     </style>
 </HeadContent>
 
+<div class="connect-four">
 <nav>
     @for (byte i = 0; i < 7; i++)
     {
@@ -19,11 +20,12 @@
     }
 </nav>
 
-<article>
-    @winnerMessage  <button style="@ResetStyle" @onclick="ResetGame">Reset the game</button>
+<article class="status">
+    <strong class="winner-text">@winnerMessage</strong>
+    <button class="reset-btn" style="@ResetStyle" @onclick="ResetGame">Reset the game</button>
     <br />
     <span class="alert-danger">@errorMessage</span>
-    <span class="alert-info">@CurrentTurn</span>
+    <span class="alert-info turn p@(winnerMessage == string.Empty ? State.PlayerTurn : 0)">@CurrentTurn</span>
 </article>
 
 <div>
@@ -57,6 +59,7 @@
         </ol>
     }
 </article>
+</div>
 
 @code {
     private string[] pieces = new string[42];

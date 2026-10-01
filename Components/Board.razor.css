@@ -1,1 +1,354 @@
-﻿nav{position:relative;height:2em;margin-bottom:1em;z-index:0;width:15.2em;display:flex;flex-flow:row nowrap;justify-content:center;padding-right:.3em}nav>span{cursor:pointer;text-align:center;font-size:2em;width:100%;height:1em}.board{position:absolute;z-index:-1;display:flex;flex-flow:row wrap;width:15.2em;height:12.5em;overflow:hidden;transform:rotate(180deg)}.container{position:relative;width:2em;height:2em;display:inline-block}.container>span{position:absolute;display:inline-block;top:.3em;right:.3em;width:1.5em;height:1.5em;background:var(--board-bg);content:' ';}.container>span::after{position:absolute;display:block;top:-8px;left:-4px;width:2em;height:2em;border-radius:50%;box-shadow:0 0 0 16px var(--board-bg);content:' ';}.col0{left:0}.col1{left:2.2em}.col2{left:4.4em}.col3{left:6.6em}.col4{left:8.8em}.col5{left:11em}.col6{left:13.2em}span.player1,span.player2{position:absolute;display:inline-block;width:1.5em;height:1.5em;border-radius:50%;transition:top .5s ease-in;top:0;z-index:-2;overflow:hidden}span.player1{background:var(--player1)}span.player2{background:var(--player2)}span.drop1{top:-1.6em}span.drop2{top:-3.8em}span.drop3{top:-6.0em}span.drop4{top:-8.2em}span.drop5{top:-10.4em}span.drop6{top:-12.6em}.move-history{margin-top:1em;width:15.2em}.move-history h4{margin:0 0 .3em}.move-history ol{margin:0;padding-left:1.4em}.move-history li{font-size:.9em;line-height:1.4}.no-moves{font-style:italic;opacity:.7}
+﻿.connect-four {
+    font-size: 1.2em;
+}
+
+div {
+	position: relative;
+}
+
+nav {
+	top: 4em;
+	width: 30em;
+	display: inline-flex;
+	flex-direction: row;
+	margin-left: 10px;
+}
+
+nav span {
+	width: 4em;
+	text-align: center;
+	cursor: pointer;
+	font-size: 1.4em;
+	color: #555;
+	transition: color .15s ease;
+}
+
+nav span:hover {
+	color: #111;
+}
+
+nav span svg {
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
+}
+
+div.board {
+	margin-top: 1em;
+	flex-wrap: wrap;
+	width: 30em;
+	height: 24em;
+	overflow: hidden;
+	display: inline-flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	z-index: -5;
+	row-gap: 0;
+	pointer-events: none;
+	border-left: 10px solid var(--board-bg);
+}
+
+span.container {
+	width: 4em;
+	height: 4em;
+	margin: 0;
+	padding: 4px;
+	overflow: hidden;
+	background-color: transparent;
+	position: relative;
+	z-index: -2;
+	pointer-events: none;
+}
+
+.container span {
+	width: 3.5em;
+	height: 3.5em;
+	border-radius: 50%;
+	box-shadow: 0 0 0 3em var(--board-bg);
+	left: 0px;
+	position: absolute;
+	display: block;
+	z-index: 5;
+	pointer-events: none;
+}
+
+.player1, .player2 {
+	width: 3.5em;
+	height: 3.5em;
+	border-radius: 50%;
+	left: 0px;
+	top: 0px;
+	position: absolute;
+	display: block;
+	z-index: -8;
+}
+
+.player1 {
+	background-color: var(--player1);
+	animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	box-shadow: 0 0 0 4px var(--player1);
+}
+
+.player2 {
+	background-color: var(--player2);
+	animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	box-shadow: 0 0 0 4px var(--player2);
+}
+
+.col0 {
+	left: calc(0em + 9px);
+}
+
+.col1 {
+	left: calc(4em + 9px);
+}
+
+.col2 {
+	left: calc(8em + 9px);
+}
+
+.col3 {
+	left: calc(12em + 9px);
+}
+
+.col4 {
+	left: calc(16em + 9px);
+}
+
+.col5 {
+	left: calc(20em + 9px);
+}
+
+.col6 {
+	left: calc(24em + 9px);
+}
+
+.drop1 {
+	animation-duration: 1s;
+	animation-name: drop1;
+}
+
+.drop2 {
+	animation-duration: 1.5s;
+	animation-name: drop2;
+}
+
+.drop3 {
+	animation-duration: 1.6s;
+	animation-name: drop3;
+}
+
+.drop4 {
+	animation-duration: 1.7s;
+	animation-name: drop4;
+}
+
+.drop5 {
+	animation-duration: 1.8s;
+	animation-name: drop5;
+}
+
+.drop6 {
+	animation-duration: 1.9s;
+	animation-name: drop6;
+}
+
+@keyframes drop1 {
+	75%, 90%, 97%, 100% {
+		transform: translateY(1.27em);
+	}
+
+	80% {
+		transform: translateY(0.4em);
+	}
+
+	95% {
+		transform: translateY(0.8em);
+	}
+
+	99% {
+		transform: translateY(1.0em);
+	}
+}
+
+@keyframes drop2 {
+	75%, 90%, 97%, 100% {
+		transform: translateY(5.27em);
+	}
+
+	80% {
+		transform: translateY(3.8em);
+	}
+
+	95% {
+		transform: translateY(4.6em);
+	}
+
+	99% {
+		transform: translateY(4.9em);
+	}
+}
+
+@keyframes drop3 {
+	75%, 90%, 97%, 100% {
+		transform: translateY(9.27em);
+	}
+
+	80% {
+		transform: translateY(7.2em);
+	}
+
+	95% {
+		transform: translateY(8.3em);
+	}
+
+	99% {
+		transform: translateY(8.8em);
+	}
+}
+
+@keyframes drop4 {
+	75%, 90%, 97%, 100% {
+		transform: translateY(13.27em);
+	}
+
+	80% {
+		transform: translateY(10.6em);
+	}
+
+	95% {
+		transform: translateY(12em);
+	}
+
+	99% {
+		transform: translateY(12.7em);
+	}
+}
+
+@keyframes drop5 {
+	75%, 90%, 97%, 100% {
+		transform: translateY(17.27em);
+	}
+
+	80% {
+		transform: translateY(14em);
+	}
+
+	95% {
+		transform: translateY(15.7em);
+	}
+
+	99% {
+		transform: translateY(16.5em);
+	}
+}
+
+@keyframes drop6 {
+	75%, 90%, 97%, 100% {
+		transform: translateY(21.27em);
+	}
+
+	80% {
+		transform: translateY(17.4em);
+	}
+
+	95% {
+		transform: translateY(19.4em);
+	}
+
+	99% {
+		transform: translateY(20.4em);
+	}
+}
+
+.status {
+	font-size: 1rem;
+	min-height: 2.5rem;
+}
+
+.winner-text {
+	font-size: 1.4rem;
+	margin-right: .6rem;
+}
+
+.reset-btn {
+	border: 0;
+	border-radius: .4rem;
+	padding: .45rem 1rem;
+	background: #1b6ec2;
+	color: #fff;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+	.reset-btn:hover {
+		background: #145a9e;
+	}
+
+.turn {
+	display: inline-block;
+	padding: .35rem .9rem;
+	border-radius: .4rem;
+	font-weight: 600;
+	font-size: 1.05rem;
+}
+
+	.turn.p1 {
+		background: var(--player1);
+		color: #fff;
+	}
+
+	.turn.p2 {
+		background: var(--player2);
+		color: #fff;
+	}
+
+	.turn.p0 {
+		display: none;
+	}
+
+.alert-danger {
+	display: inline-block;
+	margin-right: .6rem;
+	font-size: 1rem;
+}
+
+.move-history {
+	margin-top: .8rem;
+	width: 24rem;
+	background: #f5f7fa;
+	border: 1px solid #e2e6ea;
+	border-radius: .5rem;
+	padding: .7rem 1rem;
+	font-size: 1rem;
+}
+
+	.move-history h4 {
+		margin: 0 0 .4rem;
+		font-size: 1rem;
+		text-transform: uppercase;
+		letter-spacing: .04em;
+		color: #555;
+	}
+
+	.move-history ol {
+		margin: 0;
+		padding-left: 1.4rem;
+		max-height: 12rem;
+		overflow-y: auto;
+	}
+
+	.move-history li {
+		font-size: .95rem;
+		line-height: 1.5;
+		color: #222;
+	}
+
+.no-moves {
+	font-style: italic;
+	color: #777;
+}
